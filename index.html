@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevBoard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="onboarding">
+    <div class="ob-card">
+
+      <h1>Dev<span>Board</span></h1>
+      <p>Your personal developer dashboard</p>
+
+      <label>Your Name</label>
+      <input type="text" id="ob-name" placeholder="Enter Your Name" />
+
+      <label>GitHub Username</label>
+      <input type="text" id="ob-github" placeholder="Enter Your Username" />
+
+      <label>Your Role</label>
+      <div class="role-grid">
+        <button class="role-btn">Student</button>
+        <button class="role-btn">Full Stack Dev</button>
+        <button class="role-btn">Frontend Dev</button>
+        <button class="role-btn">Backend Dev</button>
+        <button class="role-btn">App Developer</button>
+        <button class="role-btn">AI/ML Engineer</button>
+      </div>
+
+
+
+      <button id="enterBtn">Enter Dashboard</button>
+    </div>
+
+
+  </div>
+
+
+  <div id="dashboard" class="hidden">
+
+    <div class="sidebar">
+
+      <div class="s-logo">Dev<span>Board</span></div>
+
+
+      <div class="s-nav">
+        <a class="s-item active">Dashboard</a>
+        <a class="s-item">Pomodoro</a>
+        <a class="s-item">Snippets</a>
+        <a class="s-item">Tasks</a>
+        <a class="s-item">Settings</a>
+      </div>
+
+      <div class="s-user">
+        <div class="avatar" id="sideAvatar">T</div>
+        <div>
+          <div class="u-name" id="sideName">Name</div>
+          <div class="u-role" id="sideRole">Role</div>
+        </div>
+      </div>
+    </div>
+
+
+<div class="main">
+  
+
+  <div class="main-topbar">
+    <span class="s-credit">Made with ❤️ by 
+      <a href="https://linkedin.com/in/devbytarun" target="_blank">Devbytarun</a>
+    </span>
+    <div class="dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+  </div>
+
+  
+
+</div>
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
+
