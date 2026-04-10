@@ -32,6 +32,7 @@
         <button class="role-btn">AI/ML Engineer</button>
       </div>
 
+      <p id="obError" class="inline-error hidden" aria-live="polite"></p>
 
 
       <button id="enterBtn">Enter Dashboard</button>
@@ -63,6 +64,7 @@
           <div class="u-name" id="sideName">Name</div>
           <div class="u-role" id="sideRole">Role</div>
         </div>
+        <button id="sidebarLogoutBtn" class="logout-x-btn" type="button" aria-label="Logout">✕</button>
       </div>
     </div>
 
@@ -115,21 +117,16 @@
                 <div class="stat-label">Stars</div>
               </div>
             </div>
-          </div>
 
-          <div class="gh-mid">
-            <div class="stat-val" id="ghContributions">-</div>
-            <div class="stat-label">Total Contributions</div>
-            <div class="gh-divider"></div>
-            <div class="streak-circle">
-              <div class="stat-val" id="ghStreak">-</div>
+            <div class="gh-btns">
+              <a id="followBtn" href="" target="_blank" rel="noopener noreferrer" class="gh-btn">Follow on GitHub</a>
+              <button id="shareBtn" class="gh-btn gh-btn-outline" type="button">Share Profile</button>
             </div>
-            <div class="stat-label">Current Streak</div>
           </div>
 
           <div class="gh-right">
             <div class="stat-label">Contribution Graph</div>
-            <img id="streakImg" src="" alt="GitHub Streak Stats" style="width:100%;border-radius:8px;margin-top:6px;" />
+            <img id="streakImg" src="" alt="GitHub Streak Stats" />
           </div>
 
         </div>
