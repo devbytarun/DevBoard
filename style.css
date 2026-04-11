@@ -6,7 +6,8 @@
 
 html {
   height: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 :root {
@@ -29,8 +30,9 @@ body {
   font-family: "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--text);
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden !important;
 }
 
 button,
@@ -46,7 +48,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
   padding: 1.5rem;
 }
 
@@ -170,6 +172,7 @@ input:focus {
   height: 100vh;
   width: 100%;
   overflow: hidden;
+  overflow-x: hidden;
 }
 
 .sidebar {
@@ -196,6 +199,9 @@ input:focus {
 .s-nav {
   flex: 1;
   padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .s-item {
@@ -206,14 +212,23 @@ input:focus {
   text-decoration: none;
   border-left: 2px solid transparent;
   font-size: 14px;
-  border-radius: 0;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
-.s-item:hover,
-.s-item.active {
+.s-item:hover {
   color: var(--text);
-  background: #0a101a;
+  background: rgba(255, 255, 255, 0.04);
+  border-left-color: transparent;
+  border-radius: 4px;
+}
+
+.s-item.active {
+  color: var(--blue);
+  background: rgba(88, 166, 255, 0.07);
   border-left-color: var(--blue);
+  font-weight: 500;
+  border-radius: 4px;
 }
 
 .s-user {
@@ -274,9 +289,9 @@ input:focus {
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
-  font-size: 13px;
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
 }
 
 .s-user > div {
@@ -307,27 +322,40 @@ input:focus {
   flex: 1;
   min-width: 0;
   min-height: 0;
-  padding: 0.65rem 1.2rem 0.8rem;
+  padding: 0.45rem 0.8rem 0.25rem;
   overflow-y: auto;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1rem;
+}
+
+.main > * {
+  min-width: 0;
+  max-width: 100%;
 }
 
 .main-topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 0.65rem 1.1rem;
+  gap: 12px;
+  padding: 0.9rem 1rem;
+  min-height: 58px;
   border-bottom: 1px solid var(--border);
   margin-bottom: 0;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 .s-credit {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--muted);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .s-credit a {
@@ -362,12 +390,13 @@ input:focus {
 
 .dots {
   display: flex;
-  gap: 6px;
+  gap: 8px;
+  flex-shrink: 0;
 }
 
 .dot {
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
 }
 
@@ -387,7 +416,7 @@ input:focus {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 1rem 1.2rem;
+  padding: 0.78rem 0.9rem;
 }
 
 .card-title {
@@ -398,26 +427,37 @@ input:focus {
 }
 
 #github-card {
-  padding: 0.95rem 1.1rem;
+  padding: 0.72rem 0.85rem;
+  overflow: hidden;
 }
 
 .gh-row {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 1.2rem;
-  align-items: start;
+  grid-template-columns: minmax(260px, 0.95fr) minmax(320px, 1.05fr);
+  gap: 0.85rem;
+  align-items: stretch;
+  min-width: 0;
 }
 
 .gh-left {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  min-width: 0;
+  gap: 12px;
+  padding-right: 0;
 }
 
 .gh-top {
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
+}
+
+.gh-top > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .gh-avatar {
@@ -441,6 +481,9 @@ input:focus {
   color: var(--text);
   line-height: 1.2;
   margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .gh-handle {
@@ -452,15 +495,15 @@ input:focus {
 .stats-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
+  gap: 6px;
 }
 
 .gh-left .stat {
   background: var(--bg);
   border: 1px solid rgba(88, 166, 255, 0.08);
   border-radius: 8px;
-  padding: 10px 12px;
-  min-height: 58px;
+  padding: 8px 10px;
+  min-height: 50px;
 }
 
 .gh-left .stat-val {
@@ -485,20 +528,28 @@ input:focus {
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  padding-left: 0;
 }
 
 #streakImg {
   width: 100%;
+  height: 190px;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
   border-radius: 8px;
   border: 1px solid rgba(88, 166, 255, 0.1);
-  background: #0a101a;
+  background: #08101b;
+  padding: 6px;
 }
 
 .gh-btns {
-  display: flex;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
   margin-top: 6px;
+  min-width: 0;
 }
 
 .gh-left .gh-btns {
@@ -506,14 +557,19 @@ input:focus {
 }
 
 .gh-btn {
-  flex: 1;
+  min-width: 0;
   background: var(--btn-green);
   color: #fff;
   border: none;
   border-radius: 7px;
-  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 8px;
   font-size: 12px;
   font-weight: 600;
+  line-height: 1;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
@@ -532,7 +588,7 @@ input:focus {
 .gh-btn-outline {
   background: transparent;
   border: 1px solid var(--border);
-  color: var(--muted);
+  color: #b9c6d8;
 }
 
 .gh-btn-outline:hover {
@@ -545,25 +601,82 @@ input:focus {
   box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.25);
 }
 
+.row-1 {
+  display: grid;
+  grid-template-columns: 6fr 4fr;
+  gap: 1rem;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 .row-2 {
   display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.2rem;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.row-1 > :only-child,
+.row-2 > :only-child {
+  grid-column: 1 / -1;
 }
 
 .row-3 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  display: block;
+  margin: 0;
+  margin-top: 0;
+  padding: 0;
+  height: auto;
+  min-height: unset;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 #chatbot-card,
 #tasks-card,
-#snippets-card,
-#pomodoro-card {
+#snippets-card {
   display: flex;
   flex-direction: column;
   min-height: 0;
+}
+
+#chatbot-card {
+  min-height: 205px;
+}
+
+#chatbot-card-full,
+#tasks-card-full,
+#snippets-card-full {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 600px;
+}
+
+#pomodoro-card {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: unset;
+  padding: 0.8rem 0.95rem;
+}
+
+.row-1 > .card,
+.row-2 > .card,
+.row-3 > .card {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+
+#tasks-card,
+#snippets-card {
+  min-height: 200px;
 }
 
 #chatMessages,
@@ -573,9 +686,46 @@ input:focus {
   min-height: 0;
 }
 
+#taskList,
+#snipList {
+  max-height: 170px;
+  overflow-y: auto;
+}
+
+#chatMessages-full,
+#taskList-full,
+#snipList-full {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
 .chat-messages {
   overflow-y: auto;
   margin-bottom: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chat-messages::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+#chatMessages,
+#chatMessages-full {
+  border-radius: 10px;
+  padding: 0.75rem;
+}
+
+#chatbot-card #chatMessages {
+  min-height: 188px;
+  max-height: 265px;
+}
+
+#chatbot-card-full #chatMessages-full {
+  min-height: 470px;
 }
 
 .chat-input-row,
@@ -586,16 +736,32 @@ input:focus {
   gap: 8px;
 }
 
+.chat-input-row {
+  align-items: stretch;
+}
+
+#chatInput,
+#chatInput-full {
+  background: #08101b;
+}
+
 .chat-input-row input,
 .task-input-row input,
 .snip-input-row input {
   flex: 1;
+  min-width: 0;
   margin-bottom: 0;
 }
 
 #chatSend,
 #snipSave,
-#taskAdd {
+#taskAdd,
+#chatSend-full,
+#snipSave-full,
+#taskAdd-full,
+#settings-github-save,
+#settings-name-save,
+#settings-role-save {
   background: var(--blue);
   color: #fff;
   border: none;
@@ -607,9 +773,31 @@ input:focus {
   white-space: nowrap;
 }
 
+#taskAdd,
+#snipSave,
+#taskAdd-full,
+#snipSave-full {
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-input-row input,
+#chatSend,
+#chatSend-full {
+  height: 42px;
+}
+
 #chatSend:hover,
 #snipSave:hover,
-#taskAdd:hover {
+#taskAdd:hover,
+#chatSend-full:hover,
+#snipSave-full:hover,
+#taskAdd-full:hover,
+#settings-github-save:hover,
+#settings-name-save:hover,
+#settings-role-save:hover {
   background: var(--blue-soft);
 }
 
@@ -619,25 +807,35 @@ input:focus {
   font-weight: 500;
   letter-spacing: 2px;
   line-height: 1;
-  margin: 4px 0;
+  margin: 4px 0 6px;
 }
 
 .pomo-label {
   font-size: 12px;
   color: var(--muted);
-  margin: 2px 0 10px;
+  margin: 0 0 10px;
 }
 
 .pomo-btns {
-  margin-top: auto;
+  margin-top: 0;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  gap: 1rem;
 }
 
 .pomo-btns button {
   flex: 1;
-  padding: 9px;
+  width: auto;
+  height: 44px;
+  padding: 0 12px;
   border-radius: 8px;
   font-size: 13px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
 }
 
 #pomoStart {
@@ -665,10 +863,26 @@ input:focus {
 @media (max-width: 1200px) {
   .gh-row {
     grid-template-columns: 1fr;
+    gap: 0.7rem;
   }
 
-  .row-2,
-  .row-3 {
+  .gh-left {
+    gap: 10px;
+  }
+
+  #streakImg {
+    height: 168px;
+  }
+
+  .row-1,
+  .row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1400px) {
+  .row-1,
+  .row-2 {
     grid-template-columns: 1fr;
   }
 }
@@ -676,12 +890,16 @@ input:focus {
 @media (max-width: 920px) {
   html {
     height: auto;
-    overflow: auto;
+    min-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   body {
     height: auto;
-    overflow: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   #dashboard {
@@ -693,6 +911,7 @@ input:focus {
 
   .main {
     height: auto;
+    min-height: 0;
     overflow: visible;
   }
 
@@ -700,11 +919,14 @@ input:focus {
     width: 100%;
     border-right: 0;
     border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 20;
   }
 
   .s-nav {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.5rem;
   }
 
@@ -712,8 +934,9 @@ input:focus {
     border-left: 0;
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 8px 10px;
+    padding: 9px 10px;
     text-align: center;
+    font-size: 13px;
   }
 
   .s-item:hover,
@@ -725,19 +948,60 @@ input:focus {
     display: flex;
     padding: 0.75rem 1rem;
   }
+
+  .main {
+    padding: 0.6rem;
+    gap: 0.6rem;
+  }
+
+  .row-2 {
+    gap: 0.8rem;
+  }
+
+  #tasks-card,
+  #snippets-card {
+    min-height: 170px;
+  }
+
+  #taskList,
+  #snipList {
+    max-height: 120px;
+  }
+
+  #chatbot-card #chatMessages {
+    min-height: 165px;
+    max-height: 210px;
+  }
+
+  #chatbot-card-full,
+  #tasks-card-full,
+  #snippets-card-full {
+    min-height: 420px;
+  }
+
+  #chatbot-card-full #chatMessages-full {
+    min-height: 280px;
+  }
+
+  #section-dashboard {
+    gap: 0.5rem;
+    padding-bottom: 0;
+  }
 }
 
 @media (max-width: 620px) {
   .main {
-    padding: 0.75rem;
+    padding: 0.5rem;
   }
 
   .main-topbar {
-    padding: 0.75rem;
+    padding: 0.7rem;
+    min-height: 0;
+    flex-wrap: wrap;
   }
 
   .ob-card {
-    padding: 1.2rem;
+    padding: 1.1rem;
   }
 
   .role-grid {
@@ -746,5 +1010,487 @@ input:focus {
 
   .s-nav {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .s-credit {
+    font-size: 12px;
+    white-space: normal;
+    line-height: 1.35;
+  }
+
+  .dots {
+    display: none;
+  }
+
+  .card,
+  #github-card,
+  #pomodoro-card {
+    padding: 0.7rem 0.75rem;
+  }
+
+  .settings-page {
+    margin-top: 0.35rem;
+    padding: 1rem;
+    gap: 1.15rem;
+  }
+
+  .settings-row {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    gap: 6px;
+    min-height: 0;
+  }
+
+  .settings-actions {
+    padding-left: 0;
+    justify-content: flex-start;
+  }
+
+  .settings-edit-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  #settings-github,
+  #settings-name-input,
+  #settings-role-input {
+    max-width: 100%;
+  }
+
+  #section-settings #settings-github-save,
+  #section-settings #settings-name-save,
+  #section-settings #settings-role-save {
+    width: 100%;
+  }
+
+  #settings-logout-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 760px) {
+  .gh-btns {
+    grid-template-columns: 1fr;
+  }
+
+  #streakImg {
+    height: 150px;
+  }
+
+  .task-input-row,
+  .snip-input-row {
+    flex-direction: column;
+  }
+
+  .task-input-row input,
+  .snip-input-row input,
+  #taskAdd,
+  #taskAdd-full,
+  #snipSave,
+  #snipSave-full {
+    width: 100%;
+  }
+
+  .chat-input-row {
+    flex-direction: column;
+  }
+
+  #chatSend,
+  #chatSend-full {
+    width: 100%;
+  }
+
+  #chatbot-card #chatMessages,
+  #chatbot-card-full #chatMessages-full {
+    min-height: 160px;
+    max-height: 210px;
+  }
+}
+
+#github-card {
+  width: 100%;
+  max-width: 100%;
+}
+
+.gh-row {
+  width: 100%;
+  max-width: 100%;
+}
+
+.row-3 #pomodoro-card {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: unset;
+  margin: 0;
+}
+
+body,
+#dashboard,
+.main {
+  overflow-x: hidden !important;
+}
+
+.main * {
+  max-width: 100%;
+}
+
+.section-page {
+  width: 100%;
+  max-width: 100%;
+}
+
+#section-settings {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.settings-page {
+  width: 100%;
+  max-width: 420px;
+  margin: 1rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.settings-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.settings-inline-message {
+  margin-top: -0.2rem;
+  margin-bottom: 0.1rem;
+  color: #3ad681;
+  font-size: 12px;
+}
+
+.settings-inline-message.error {
+  color: #f85149;
+}
+
+.settings-section-heading {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.settings-row {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 34px;
+}
+
+.settings-label {
+  color: var(--muted);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+#settings-name-display,
+#settings-role-display {
+  display: none;
+}
+
+#settings-github {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 0;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid rgba(139, 148, 158, 0.35);
+  border-radius: 6px;
+  background: rgba(13, 17, 23, 0.65);
+}
+
+#settings-name-input,
+#settings-role-input {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 0;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid rgba(139, 148, 158, 0.35);
+  border-radius: 6px;
+  background: rgba(13, 17, 23, 0.65);
+}
+
+.settings-edit-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding-left: 0;
+}
+
+.settings-edit-row::before {
+  content: none;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-left: 110px;
+}
+
+.settings-actions-left {
+  justify-content: flex-start;
+  padding-left: 0;
+}
+
+#section-settings #settings-github-save {
+  width: auto;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#section-settings #settings-name-save,
+#section-settings #settings-role-save {
+  width: auto;
+  padding: 7px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+#settings-logout-btn {
+  width: auto;
+  background: transparent;
+  color: #f85149;
+  border: 1px solid #f85149;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#settings-logout-btn:hover {
+  color: #ff7b72;
+  border-color: #ff7b72;
+  background: rgba(248, 81, 73, 0.08);
+}
+
+#section-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+/* Final mobile overrides (kept at file end to win cascade) */
+@media (max-width: 920px) {
+  #section-dashboard {
+    gap: 0.5rem;
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 620px) {
+  .settings-page {
+    max-width: 100%;
+    margin-top: 0.35rem;
+    padding: 1rem;
+    gap: 1.15rem;
+  }
+
+  .settings-row {
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    gap: 6px;
+    min-height: 0;
+  }
+
+  .settings-actions {
+    padding-left: 0;
+    justify-content: flex-start;
+  }
+
+  .settings-edit-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  #settings-github,
+  #settings-name-input,
+  #settings-role-input {
+    max-width: 100%;
+  }
+
+  #section-settings #settings-github-save,
+  #section-settings #settings-name-save,
+  #section-settings #settings-role-save,
+  #settings-logout-btn {
+    width: 100%;
+  }
+}
+
+/* Mobile polish overrides */
+@media (max-width: 920px) {
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(22, 27, 34, 0.96);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .s-logo {
+    border-bottom: 0;
+    padding: 0.85rem 0.9rem 0.45rem;
+    font-size: 21px;
+  }
+
+  .s-nav {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 0.45rem;
+    padding: 0 0.8rem 0.2rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .s-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .s-item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    border-left: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .s-item.active {
+    border-color: var(--blue);
+    background: rgba(88, 166, 255, 0.16);
+  }
+
+  .s-user {
+    border-top: 0;
+    padding: 0.55rem 0.9rem 0.5rem;
+  }
+
+  .main {
+    padding: 0.7rem 0.65rem 1rem;
+    gap: 0.7rem;
+  }
+
+  .row-1,
+  .row-2 {
+    gap: 0.7rem;
+  }
+
+  #chatbot-card-full,
+  #tasks-card-full,
+  #snippets-card-full {
+    min-height: 0;
+  }
+
+  #chatbot-card #chatMessages {
+    min-height: 220px;
+    max-height: 52vh;
+  }
+
+  #chatbot-card-full #chatMessages-full {
+    min-height: 50vh;
+    max-height: 64vh;
+  }
+
+  #taskList,
+  #snipList {
+    max-height: 220px;
+  }
+}
+
+@media (max-width: 700px) {
+  .main-topbar {
+    padding: 0.65rem 0.25rem 0.2rem;
+    border-bottom: 0;
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .s-credit {
+    font-size: 12px;
+    line-height: 1.35;
+    white-space: normal;
+  }
+
+  .dots {
+    display: none;
+  }
+
+  .gh-row {
+    grid-template-columns: 1fr;
+  }
+
+  .gh-btns {
+    grid-template-columns: 1fr;
+  }
+
+  #streakImg {
+    height: 145px;
+  }
+
+  .task-input-row,
+  .snip-input-row,
+  .chat-input-row {
+    flex-direction: column;
+  }
+
+  #chatSend,
+  #chatSend-full,
+  #taskAdd,
+  #taskAdd-full,
+  #snipSave,
+  #snipSave-full {
+    width: 100%;
+  }
+
+  #chatbot-card #chatMessages,
+  #chatbot-card-full #chatMessages-full {
+    min-height: 180px;
+    max-height: 46vh;
+  }
+
+  .settings-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .settings-actions {
+    padding-left: 0;
+    justify-content: flex-start;
+  }
+
+  .settings-edit-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #section-settings #settings-github-save,
+  #section-settings #settings-name-save,
+  #section-settings #settings-role-save,
+  #settings-logout-btn {
+    width: 100%;
   }
 }

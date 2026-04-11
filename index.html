@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevBoard</title>
+  <title>DevSpace</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,7 +13,7 @@
   <div id="onboarding">
     <div class="ob-card">
 
-      <h1>Dev<span>Board</span></h1>
+      <h1>Dev<span>Space</span></h1>
       <p>Your personal developer dashboard</p>
 
       <label>Your Name</label>
@@ -46,16 +46,15 @@
 
     <div class="sidebar">
 
-      <div class="s-logo">Dev<span>Board</span></div>
+      <div class="s-logo">Dev<span>Space</span></div>
 
 
       <div class="s-nav">
-        <a class="s-item active">Dashboard</a>
-        <a class="s-item">Pomodoro</a>
-        <a class="s-item">Snippets</a>
-        <a class="s-item">Tasks</a>
-        <a class="s-item">Chatbot</a>
-        <a class="s-item">Settings</a>
+        <a class="s-item active" data-section="dashboard">Dashboard</a>
+        <a class="s-item" data-section="chatbot">Chatbot</a>
+        <a class="s-item" data-section="tasks">Tasks</a>
+        <a class="s-item" data-section="snippets">Snippets</a>
+        <a class="s-item" data-section="settings">Settings</a>
       </div>
 
       <div class="s-user">
@@ -64,7 +63,6 @@
           <div class="u-name" id="sideName">Name</div>
           <div class="u-role" id="sideRole">Role</div>
         </div>
-        <button id="sidebarLogoutBtn" class="logout-x-btn" type="button" aria-label="Logout">✕</button>
       </div>
     </div>
 
@@ -83,107 +81,177 @@
         </div>
       </div>
 
-      <div class="card" id="github-card">
-        <div class="card-title">GITHUB</div>
-        <div class="gh-row">
+      <div id="section-dashboard">
+        <div class="row-1">
+          <div class="card" id="github-card">
+            <div class="card-title">GITHUB</div>
+            <div class="gh-row">
 
-          <div class="gh-left">
-            <div class="gh-top">
+              <div class="gh-left">
+                <div class="gh-top">
 
 
-              <div class="gh-avatar" id="ghAvatar">T</div>
-              <div>
-                <div class="gh-name" id="ghName">Name</div>
-                <div class="gh-handle" id="ghHandle">@username</div>
+                  <div class="gh-avatar" id="ghAvatar">T</div>
+                  <div>
+                    <div class="gh-name" id="ghName">Name</div>
+                    <div class="gh-handle" id="ghHandle">@username</div>
+                  </div>
+                </div>
+
+
+                <div class="stats-grid">
+                  <div class="stat">
+                    <div class="stat-val" id="ghRepos">-</div>
+                    <div class="stat-label">Repos</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-val" id="ghFollowers">-</div>
+                    <div class="stat-label">Followers</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-val" id="ghFollowing">-</div>
+                    <div class="stat-label">Following</div>
+                  </div>
+                  <div class="stat">
+                    <div class="stat-val" id="ghStars">-</div>
+                    <div class="stat-label">Stars</div>
+                  </div>
+                </div>
+
+                <div class="gh-btns">
+                  <a id="followBtn" href="" target="_blank" rel="noopener noreferrer" class="gh-btn">Follow on
+                    GitHub</a>
+                  <button id="shareBtn" class="gh-btn gh-btn-outline" type="button">Share Profile</button>
+                </div>
               </div>
-            </div>
 
+              <div class="gh-right">
+                <div class="stat-label">Contribution Graph</div>
+                <img id="streakImg" src="" alt="GitHub Streak Stats" />
+              </div>
 
-            <div class="stats-grid">
-              <div class="stat">
-                <div class="stat-val" id="ghRepos">-</div>
-                <div class="stat-label">Repos</div>
-              </div>
-              <div class="stat">
-                <div class="stat-val" id="ghFollowers">-</div>
-                <div class="stat-label">Followers</div>
-              </div>
-              <div class="stat">
-                <div class="stat-val" id="ghFollowing">-</div>
-                <div class="stat-label">Following</div>
-              </div>
-              <div class="stat">
-                <div class="stat-val" id="ghStars">-</div>
-                <div class="stat-label">Stars</div>
-              </div>
-            </div>
-
-            <div class="gh-btns">
-              <a id="followBtn" href="" target="_blank" rel="noopener noreferrer" class="gh-btn">Follow on GitHub</a>
-              <button id="shareBtn" class="gh-btn gh-btn-outline" type="button">Share Profile</button>
             </div>
           </div>
 
-          <div class="gh-right">
-            <div class="stat-label">Contribution Graph</div>
-            <img id="streakImg" src="" alt="GitHub Streak Stats" />
+          <div class="card" id="chatbot-card">
+            <div class="card-title">AI CHATBOT</div>
+            <div class="chat-messages" id="chatMessages">
+            </div>
+            <div class="chat-input-row">
+              <input type="text" id="chatInput" placeholder="Ask anything..." />
+              <button id="chatSend">Send</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="card" id="tasks-card">
+            <div class="card-title">TODAY'S TASKS</div>
+            <div id="taskList"></div>
+            <div class="task-input-row">
+              <input type="text" id="taskInput" placeholder="Add a task..." />
+              <button id="taskAdd">+ Add</button>
+            </div>
           </div>
 
+          <div class="card" id="snippets-card">
+            <div class="card-title">CODE SNIPPETS</div>
+            <div id="snipList"></div>
+            <div class="snip-input-row">
+              <input type="text" id="snipName" placeholder="Snippet name..." />
+              <input type="text" id="snipCode" placeholder="Paste code here..." />
+              <button id="snipSave">+ Save</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="row-3">
+          <div class="card" id="pomodoro-card">
+            <div class="card-title">POMODORO</div>
+            <div class="pomo-time" id="pomoTime">25:00</div>
+            <div class="pomo-label" id="pomoLabel">Ready to focus?</div>
+            <div class="pomo-btns">
+              <button id="pomoStart">▶ Start</button>
+              <button id="pomoReset">↺ Reset</button>
+            </div>
+          </div>
         </div>
       </div>
 
+      <div id="section-tasks" class="hidden">
+        <div class="card section-page" id="tasks-card-full">
+          <div class="card-title">TODAY'S TASKS</div>
+          <div id="taskList-full"></div>
+          <div class="task-input-row">
+            <input type="text" id="taskInput-full" placeholder="Add a task..." />
+            <button id="taskAdd-full">+ Add</button>
+          </div>
+        </div>
+      </div>
 
+      <div id="section-snippets" class="hidden">
+        <div class="card section-page" id="snippets-card-full">
+          <div class="card-title">CODE SNIPPETS</div>
+          <div id="snipList-full"></div>
+          <div class="snip-input-row">
+            <input type="text" id="snipName-full" placeholder="Snippet name..." />
+            <input type="text" id="snipCode-full" placeholder="Paste code here..." />
+            <button id="snipSave-full">+ Save</button>
+          </div>
+        </div>
+      </div>
 
-
-
-      <div class="row-2">
-
-        <div class="card" id="chatbot-card">
+      <div id="section-chatbot" class="hidden">
+        <div class="card section-page" id="chatbot-card-full">
           <div class="card-title">AI CHATBOT</div>
-          <div class="chat-messages" id="chatMessages">
+          <div class="chat-messages" id="chatMessages-full">
           </div>
           <div class="chat-input-row">
-            <input type="text" id="chatInput" placeholder="Ask anything..." />
-            <button id="chatSend">Send</button>
-          </div>
-        </div>
-
-        <div class="card" id="tasks-card">
-          <div class="card-title">TODAY'S TASKS</div>
-          <div id="taskList"></div>
-          <div class="task-input-row">
-            <input type="text" id="taskInput" placeholder="Add a task..." />
-            <button id="taskAdd">+ Add</button>
+            <input type="text" id="chatInput-full" placeholder="Ask anything..." />
+            <button id="chatSend-full">Send</button>
           </div>
         </div>
       </div>
 
-      
-<div class="row-3">
+      <div id="section-settings" class="hidden">
+        <div class="section-page settings-page" id="settings-card">
+          <section class="settings-section">
+            <h3 class="settings-section-heading">GITHUB</h3>
+            <div class="settings-row">
+              <label class="settings-label" for="settings-github">GitHub Username</label>
+              <input type="text" id="settings-github" value="@username" />
+            </div>
+            <div class="settings-actions">
+              <button id="settings-github-save">Update</button>
+            </div>
+          </section>
 
-  
-  <div class="card" id="snippets-card">
-    <div class="card-title">CODE SNIPPETS</div>
-    <div id="snipList"></div>
-    <div class="snip-input-row">
-      <input type="text" id="snipName" placeholder="Snippet name..." />
-      <input type="text" id="snipCode" placeholder="Paste code here..." />
-      <button id="snipSave">+ Save</button>
-    </div>
-  </div>
+          <p id="settings-inline-message" class="settings-inline-message hidden" aria-live="polite"></p>
 
-  
-  <div class="card" id="pomodoro-card">
-    <div class="card-title">POMODORO</div>
-    <div class="pomo-time" id="pomoTime">25:00</div>
-    <div class="pomo-label" id="pomoLabel">Ready to focus?</div>
-    <div class="pomo-btns">
-      <button id="pomoStart">▶ Start</button>
-      <button id="pomoReset">↺ Reset</button>
-    </div>
-  </div>
-
-</div>
+          <section class="settings-section">
+            <h3 class="settings-section-heading">ACCOUNT</h3>
+            <div class="settings-row">
+              <span class="settings-label">Name</span>
+              <span id="settings-name-display">Name</span>
+            </div>
+            <div class="settings-edit-row">
+              <input type="text" id="settings-name-input" placeholder="Update name..." />
+              <button id="settings-name-save">Update</button>
+            </div>
+            <div class="settings-row">
+              <span class="settings-label">Role</span>
+              <span id="settings-role-display">Role</span>
+            </div>
+            <div class="settings-edit-row">
+              <input type="text" id="settings-role-input" placeholder="Update role..." />
+              <button id="settings-role-save">Update</button>
+            </div>
+            <div class="settings-actions settings-actions-left">
+              <button id="settings-logout-btn">Logout</button>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   </div>
 
